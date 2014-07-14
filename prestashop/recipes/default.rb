@@ -6,7 +6,6 @@ node[:deploy].each do |application, deploy|
 
   # write out opsworks.php
   template "#{deploy[:deploy_to]}/shared/config/settings.inc.php" do
-    cookbook 'php'
     source 'settings.inc.php.erb'
     mode '0660'
     owner deploy[:user]
