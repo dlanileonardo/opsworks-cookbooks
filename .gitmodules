@@ -1,3 +1,6 @@
 [submodule "runit"]
 	path = runit
 	url = git@github.com:hw-cookbooks/runit.git
+[submodule "rc_mon"]
+	path = rc_mon
+	url = git@github.com:hw-cookbooks/rc_mon.git
