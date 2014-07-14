@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: git
+# Cookbook Name:: php
 # Recipe:: packages
 #
 # Copyright 2013, Bubble
