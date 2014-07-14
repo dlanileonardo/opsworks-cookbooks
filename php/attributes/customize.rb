@@ -5,6 +5,3 @@
 # "php/attributes/customize.rb" in your cookbook repository and
 # put the overrides in YOUR customize.rb file.
 ###
-extensions = [
-  'php5-apcu', 'php5-gd', 'php5-mcrypt', 'php5-curl'
-]
