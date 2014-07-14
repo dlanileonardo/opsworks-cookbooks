@@ -1,5 +1,5 @@
-source "https://supermarket.getchef.com"
+site :opscode
 
-metadata
-
-cookbook "rc_mon"
+cookbook 'apt'
+cookbook 'bluepill'
+cookbook 'rc_mon'
