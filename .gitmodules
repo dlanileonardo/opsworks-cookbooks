@@ -7,3 +7,6 @@
 [submodule "control_groups"]
 	path = control_groups
 	url = git@github.com:hw-cookbooks/control_groups.git
+[submodule "build-essential"]
+	path = build-essential
+	url = git@github.com:hw-cookbooks/build-essential.git
