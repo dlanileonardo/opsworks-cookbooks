@@ -4,3 +4,6 @@
 [submodule "rc_mon"]
 	path = rc_mon
 	url = git@github.com:hw-cookbooks/rc_mon.git
+[submodule "control_groups"]
+	path = control_groups
+	url = git@github.com:hw-cookbooks/control_groups.git
