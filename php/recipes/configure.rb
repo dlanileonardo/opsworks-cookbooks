@@ -21,4 +21,9 @@ node[:deploy].each do |application, deploy|
       File.exists?("#{deploy[:deploy_to]}/shared/config")
     end
   end
+
+  # link to config
+  link "#{deploy[:deploy_to]}/current/config/settings.inc.php" do
+    to "#{deploy[:deploy_to]}/shared/config/settings.inc.php"
+  end
 end
