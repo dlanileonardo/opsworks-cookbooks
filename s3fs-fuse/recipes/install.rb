@@ -16,7 +16,7 @@ when 'debian'
   %w(
     build-essential
     libfuse-dev
-    fuse-utils
+    fuse-emulator-utils
     libcurl4-openssl-dev
     libxml2-dev
     mime-support
