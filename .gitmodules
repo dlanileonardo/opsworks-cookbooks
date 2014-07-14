@@ -10,6 +10,3 @@
 [submodule "build-essential"]
 	path = build-essential
 	url = git@github.com:hw-cookbooks/build-essential.git
-[submodule "yum"]
-	path = yum
-	url = git@github.com:hw-cookbooks/yum.git
