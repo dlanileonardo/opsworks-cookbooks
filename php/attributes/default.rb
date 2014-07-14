@@ -16,4 +16,4 @@
 
 include_attribute 'deploy'
 
-include_attribute "php::customize"
+# include_attribute "php::customize"
