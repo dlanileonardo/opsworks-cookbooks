@@ -24,7 +24,11 @@ node[:deploy].each do |application, deploy|
   end
 
   # Link img to S3
-  link "#{deploy[:deploy_to]}/current/img" do
-    to "/mnt/aws/img"
+  # link "#{deploy[:deploy_to]}/current/img" do
+  #   to "/mnt/aws/img"
+  # end
+
+  app_root = "#{deploy[:deploy_to]}/current"
+    execute "chmod -R 777 #{app_root}/cache" do
   end
 end
