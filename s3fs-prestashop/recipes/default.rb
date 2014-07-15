@@ -13,7 +13,7 @@ node[:deploy].each do |application, deploy|
   # end
 
   # Link cache do tema
-  link "#{deploy[:deploy_to]}/current/themes/bootstrap-theme/cache" do
+  link "#{deploy[:deploy_to]}/current/themes/#{node[:prestashop][:theme]}/cache" do
     to "/mnt/themes/bootstrap-theme/cache"
     only_if do
       FileTest.exists?("/mnt/themes/bootstrap-theme/cache") && !FileTest.exists?("#{deploy[:deploy_to]}/current/themes/bootstrap-theme/cache")

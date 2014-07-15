@@ -1,0 +1,1 @@
+default[:prestashop][:theme] = "prestashop"
