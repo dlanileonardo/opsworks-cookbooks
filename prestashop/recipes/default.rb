@@ -30,4 +30,6 @@ node[:deploy].each do |application, deploy|
   end
   execute "chmod 666 #{app_root}/.htaccess" do
   end
+  execute "chmod 666 #{app_root}/robots.txt" do
+  end
 end
