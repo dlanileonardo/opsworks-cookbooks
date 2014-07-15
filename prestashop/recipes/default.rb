@@ -13,9 +13,9 @@ node[:deploy].each do |application, deploy|
     variables(
       :database => deploy[:database],
     )
-    # only_if do
-    #   (FileTest.exists?("#{deploy[:deploy_to]}/shared/config") && !FileTest.exists?("#{deploy[:deploy_to]}/shared/config")) || node[:deploy][:override_settings]
-    # end
+    only_if do
+      (FileTest.exists?("#{deploy[:deploy_to]}/shared/config") && !FileTest.exists?("#{deploy[:deploy_to]}/shared/config/settings.inc.php")) || node[:deploy][:override_settings]
+    end
   end
 
   # link to config
