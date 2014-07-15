@@ -16,7 +16,7 @@ node[:deploy].each do |application, deploy|
   link "#{deploy[:deploy_to]}/current/themes/bootstrap-theme/cache" do
     to "/mnt/themes/bootstrap-theme/cache"
     only_if do
-      File.exists?("/mnt/themes/bootstrap-theme/cache") && !File.exists?("#{deploy[:deploy_to]}/current/themes/bootstrap-theme/cache")
+      FileTest.exists?("/mnt/themes/bootstrap-theme/cache") && !FileTest.exists?("#{deploy[:deploy_to]}/current/themes/bootstrap-theme/cache")
     end
   end
 
@@ -24,7 +24,7 @@ node[:deploy].each do |application, deploy|
   link "#{deploy[:deploy_to]}/current/img" do
     to "/mnt/aws/img"
     only_if do
-      File.exists?("/mnt/aws/img") && !File.exists?("#{deploy[:deploy_to]}/current/img")
+      FileTest.exists?("/mnt/aws/img") && !FileTest.exists?("#{deploy[:deploy_to]}/current/img")
     end
   end
 end
