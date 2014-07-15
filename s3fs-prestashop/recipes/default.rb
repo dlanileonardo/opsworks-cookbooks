@@ -4,19 +4,22 @@ node[:deploy].each do |application, deploy|
     next
   end
 
-  directory "/mnt/aws/themes/bootstrap-theme/cache/" do
-    owner deploy[:user]
-    group deploy[:group]
-    mode 0777
-    action :create
+  absolute_path = "/"
+  %{ mnt aws themes bootstrap-theme cache }.each do | folder |
+    absolute_path += folder
+    directory absolute_path do
+      owner deploy[:user]
+      group deploy[:group]
+      mode 0777
+      action :create_if_missing
+    end
   end
 
-  link "#{deploy[:deploy_to]}/current/theme/bootstrap-theme/cache" do
-    to "/mnt/aws/themes/bootstrap-theme/cache/"
+  Link img to S3
+  link "#{deploy[:deploy_to]}/current/img" do
+    to "/mnt/aws/img"
+    only_if do
+      File.exists?("/mnt/aws/img") && !File.exists?("#{deploy[:deploy_to]}/current/img")
+    end
   end
-
-  # Link img to S3
-  # link "#{deploy[:deploy_to]}/current/img" do
-  #   to "/mnt/aws/img"
-  # end
 end

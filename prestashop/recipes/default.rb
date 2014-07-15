@@ -28,4 +28,6 @@ node[:deploy].each do |application, deploy|
     execute "chmod -R 777 #{app_root}/#{folder}" do
     end
   end
+  execute "chmod 666 #{app_root}/.htaccess" do
+  end
 end
