@@ -4,18 +4,12 @@ node[:deploy].each do |application, deploy|
     next
   end
 
-  absolute_path = ""
-  %w{ mnt aws themes bootstrap-theme cache }.each do | folder |
-    absolute_path += "/#{folder}"
-    directory absolute_path do
-      owner deploy[:user]
-      group deploy[:group]
-      mode 0777
-      action :create
-      only_if do
-        !File.exists?(absolute_path)
-      end
-    end
+  directory "/mnt/themes/bootstrap-theme/cache" do
+    owner deploy[:user]
+    group deploy[:group]
+    mode 0777
+    action :create
+    recursive: true
   end
 
   Link img to S3
