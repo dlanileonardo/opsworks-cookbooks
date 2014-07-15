@@ -29,8 +29,8 @@ node[:deploy].each do |application, deploy|
   # end
 
   app_root = "#{deploy[:deploy_to]}/current"
-  %w{ cache modules translations upload download config mails themes img }.each do |os|
-    execute "chmod -R 777 #{app_root}/cache" do
+  %w{ cache modules translations upload download config mails themes img }.each do |folder|
+    execute "chmod -R 777 #{app_root}/#{folder}" do
     end
   end
 end
