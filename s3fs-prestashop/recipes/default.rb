@@ -4,9 +4,9 @@ node[:deploy].each do |application, deploy|
     next
   end
 
-  absolute_path = "/"
-  %{ mnt aws themes bootstrap-theme cache }.each do | folder |
-    absolute_path += folder
+  absolute_path = ""
+  %w{ mnt aws themes bootstrap-theme cache }.each do | folder |
+    absolute_path += "/#{folder}"
     directory absolute_path do
       owner deploy[:user]
       group deploy[:group]
