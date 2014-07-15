@@ -11,7 +11,10 @@ node[:deploy].each do |application, deploy|
       owner deploy[:user]
       group deploy[:group]
       mode 0777
-      action :create_if_missing
+      action :create
+      only_if do
+        !File.exists?(absolute_path)
+      end
     end
   end
 
