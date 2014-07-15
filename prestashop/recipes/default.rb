@@ -7,14 +7,14 @@ node[:deploy].each do |application, deploy|
   # write out opsworks.php
   template "#{deploy[:deploy_to]}/shared/config/settings.inc.php" do
     source 'settings.inc.php.erb'
-    mode '0660'
+    mode '0770'
     owner deploy[:user]
     group deploy[:group]
     variables(
       :database => deploy[:database],
     )
     only_if do
-      File.exists?("#{deploy[:deploy_to]}/shared/config")
+      (File.exists?("#{deploy[:deploy_to]}/shared/config") && !File.exists?("#{deploy[:deploy_to]}/shared/config")) || node[:deploy][:override_settings]
     end
   end
 
