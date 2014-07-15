@@ -14,17 +14,17 @@ node[:deploy].each do |application, deploy|
 
   # Link cache do tema
   link "#{deploy[:deploy_to]}/current/themes/#{node[:prestashop][:theme]}/cache" do
-    to "/mnt/themes/bootstrap-theme/cache"
-    only_if do
-      FileTest.exists?("/mnt/themes/bootstrap-theme/cache") && !FileTest.exists?("#{deploy[:deploy_to]}/current/themes/bootstrap-theme/cache")
-    end
+    to "/mnt/aws/themes/#{node[:prestashop][:theme]}/cache"
+    # only_if do
+    #   FileTest.exists?("/mnt/themes/#{node[:prestashop][:theme]}/cache") && !FileTest.exists?("#{deploy[:deploy_to]}/current/themes/#{node[:prestashop][:theme]}/cache")
+    # end
   end
 
   # Link img to S3
   link "#{deploy[:deploy_to]}/current/img" do
     to "/mnt/aws/img"
-    only_if do
-      FileTest.exists?("/mnt/aws/img") && !FileTest.exists?("#{deploy[:deploy_to]}/current/img")
-    end
+    # only_if do
+    #   FileTest.exists?("/mnt/aws/img") && !FileTest.exists?("#{deploy[:deploy_to]}/current/img")
+    # end
   end
 end
