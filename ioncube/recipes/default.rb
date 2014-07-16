@@ -10,6 +10,6 @@ bash "ioncube" do
   EOH
 end
 
-template "/etc/php5/apache2/conf.d/ioncube.ini" do
+template "/etc/php5/apache2/conf.d/00-ioncube.ini" do
   source 'ioncube.ini.erb'
 end
