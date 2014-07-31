@@ -42,7 +42,7 @@ node[:deploy].each do |application, deploy|
   end
 
   # assets
-  execute "cp -R current/themes/bootstrap-theme/assets/ /mnt/aws/themes/bootstrap-theme/assets/" do
+  execute "cp -R #{deploy[:deploy_to]}/current/themes/bootstrap-theme/assets/ /mnt/aws/themes/bootstrap-theme/assets/" do
   end
 
   app_root = "#{deploy[:deploy_to]}/current"
