@@ -42,7 +42,7 @@ node[:deploy].each do |application, deploy|
   end
 
   # assets
-  remote_directory "#{deploy[:deploy_to]}/current/themes/bootstrap-theme/assets" do
+  remote_directory "/mnt/aws/themes/bootstrap-theme/assets" do
     files_mode "0770"
     files_owner deploy[:user]
     files_group deploy[:group]
