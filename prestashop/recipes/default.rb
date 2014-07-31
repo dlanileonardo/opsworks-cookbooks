@@ -26,6 +26,8 @@ node[:deploy].each do |application, deploy|
   end
 
   # link to aws/img
+  execute "rm -rf #{deploy[:deploy_to]}/current/img" do
+  end
   link "#{deploy[:deploy_to]}/current/img" do
     to "/mnt/aws/img"
     owner deploy[:user]
