@@ -21,10 +21,15 @@ node[:deploy].each do |application, deploy|
   # link to config
   link "#{deploy[:deploy_to]}/current/config/settings.inc.php" do
     to "#{deploy[:deploy_to]}/shared/config/settings.inc.php"
+    owner deploy[:user]
+    group deploy[:group]
   end
 
   app_root = "#{deploy[:deploy_to]}/current"
-  %w{ cache modules translations upload download config mails themes }.each do |folder|
+  execute "chmod -R 770 #{app_root}" do
+  end
+
+  %w{ cache modules translations upload download config mails themes tools }.each do |folder|
     execute "chmod -R 777 #{app_root}/#{folder}" do
     end
   end
