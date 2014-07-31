@@ -41,6 +41,18 @@ node[:deploy].each do |application, deploy|
     group deploy[:group]
   end
 
+  # assets
+  remote_directory "#{deploy[:deploy_to]}/current/themes/bootstrap-theme/assets" do
+    files_mode "0770"
+    files_owner deploy[:user]
+    files_group deploy[:group]
+    mode "0770"
+    owner deploy[:user]
+    group deploy[:group]
+    source "#{deploy[:deploy_to]}/current/themes/bootstrap-theme/assets"
+    overwrite true
+  end
+
   app_root = "#{deploy[:deploy_to]}/current"
   execute "chmod -R 770 #{app_root}" do
   end
