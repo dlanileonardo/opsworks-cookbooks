@@ -4,5 +4,5 @@ license     "Apache 2.0"
 description "Installs/Configures s3fs-fuse"
 version          "0.1.0"
 
-depends "bluepill"
+suggests 'bluepill'
 depends 'rc_mon'
