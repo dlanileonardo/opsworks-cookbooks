@@ -14,10 +14,10 @@ describe_recipe 'apache2::mod_php5' do
   end
 
   it 'installs dependencies' do
-    case node[:platform_family]
-    when 'debian'
+    case node[:platform]
+    when 'debian','ubuntu'
       package('libapache2-mod-php5').must_be_installed
-    when 'rhel'
+    when 'centos','redhat','fedora','amazon'
       package('php').must_be_installed
     end
   end

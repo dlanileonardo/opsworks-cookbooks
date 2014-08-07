@@ -24,10 +24,11 @@ default[:opsworks_agent][:log_dir] = '/var/log/aws/opsworks'
 default[:opsworks_agent][:user] = 'aws'
 default[:opsworks_agent][:group] = 'aws'
 
-default[:opsworks][:ruby_stack] = 'ruby'
+default[:opsworks][:ruby_stack] = 'ruby_enterprise'
 default[:opsworks][:ruby_version] = '1.9.3'
 default[:opsworks][:run_cookbook_tests] = false
 
+default['opsworks_initial_setup']['swapfile_instancetypes'] = [ 't1.micro', 't2.micro' ]
 default['opsworks_initial_setup']['swapfile_name'] = '/var/swapfile'
 default['opsworks_initial_setup']['swapfile_size_mb'] = 256
 

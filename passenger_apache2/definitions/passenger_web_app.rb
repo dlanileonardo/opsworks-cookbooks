@@ -37,18 +37,11 @@ define :passenger_web_app do
   end
 
   # move away default virtual host so that the Rails app becomes the default virtual host
-  if platform?('ubuntu') && node[:platform_version] == '14.04'
-    source_default_site_config = "#{node[:apache][:dir]}/sites-enabled/000-default.conf"
-    target_default_site_config = "#{node[:apache][:dir]}/sites-enabled/zzz-default.conf"
-  else
-    source_default_site_config = "#{node[:apache][:dir]}/sites-enabled/000-default"
-    target_default_site_config = "#{node[:apache][:dir]}/sites-enabled/zzz-default"
-  end
   execute "mv away default virtual host" do
     action :run
-    command "mv #{source_default_site_config} #{target_default_site_config}"
+    command "mv #{node[:apache][:dir]}/sites-enabled/000-default #{node[:apache][:dir]}/sites-enabled/zzz-default"
     only_if do
-      File.exists?(source_default_site_config)
+      File.exists?("#{node[:apache][:dir]}/sites-enabled/000-default")
     end
   end
 

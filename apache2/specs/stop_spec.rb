@@ -5,10 +5,10 @@ describe_recipe 'apache2::stop' do
   include MiniTest::Chef::Assertions
 
   it 'stops apache2' do
-    case node[:platform_family]
-    when 'rhel'
+    case node[:platform]
+    when 'centos','redhat','fedora','amazon'
       service('httpd').wont_be_running
-    when 'debian'
+    when 'ubuntu','debian'
       service('apache2').wont_be_running
     end
   end

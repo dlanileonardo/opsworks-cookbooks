@@ -1,8 +1,8 @@
 template '/etc/logrotate.d/apache2' do
-  case node[:platform_family]
-  when 'debian'
+  case node[:platform]
+  when 'debian','ubuntu'
     path '/etc/logrotate.d/apache2'
-  when 'rhel'
+  when 'centos','redhat','fedora','amazon'
     path '/etc/logrotate.d/httpd'
   end
   backup false

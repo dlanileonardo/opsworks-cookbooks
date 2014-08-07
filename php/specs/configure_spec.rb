@@ -7,13 +7,7 @@ describe_recipe 'php::configure' do
   it 'creates the php file for data exchange' do
     node[:deploy].each do |application, deploy|
       if deploy[:application_type] == 'php'
-        file("#{deploy[:deploy_to]}/shared/config/settings.inc.php").must_exist.with(:mode, '0660').and(:owner, deploy[:user]).and(:group, deploy[:group])
-      end
-    end
-
-    node[:deploy].each do |application, deploy|
-      if deploy[:application_type] == 'php'
-        file("#{deploy[:deploy_to]}/shared/config/opsworks.inc.php").must_exist.with(:mode, '0660').and(:owner, deploy[:user]).and(:group, deploy[:group])
+        file("#{deploy[:deploy_to]}/shared/config/opsworks.php").must_exist.with(:mode, '0660').and(:owner, deploy[:user]).and(:group, deploy[:group])
       end
     end
   end
