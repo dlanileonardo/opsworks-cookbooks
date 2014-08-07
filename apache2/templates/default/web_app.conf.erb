@@ -5,14 +5,14 @@
   <% end -%>
   DocumentRoot <%= @params[:docroot] %>
   RewriteEngine On
-  
+
   <Directory <%= @params[:docroot] %>>
     Options FollowSymLinks
     AllowOverride All
     Order allow,deny
     Allow from all
   </Directory>
-  
+
   <Directory />
     Options FollowSymLinks
     AllowOverride All
@@ -26,15 +26,17 @@
     Allow from 127.0.0.1
   </Location>
 
-  LogLevel info
+  LogLevel <%= node[:apache][:log_level] %>
   ErrorLog <%= node[:apache][:log_dir] %>/<%= @params[:name] %>-error.log
   CustomLog <%= node[:apache][:log_dir] %>/<%= @params[:name] %>-access.log combined
 
   FileETag none
 
   RewriteEngine On
+  <% if node[:apache][:version].nil? || node[:apache][:version] == '2.2' -%>
   RewriteLog <%= node[:apache][:log_dir] %>/<%= @application_name %>-rewrite.log
   RewriteLogLevel 0
+  <% end -%>
 
   # Canonical host, <%= @params[:server_name] %>
   RewriteCond %{HTTP_HOST}   !^<%= @params[:server_name] %> [NC]
