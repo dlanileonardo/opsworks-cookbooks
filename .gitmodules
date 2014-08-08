@@ -1,0 +1,6 @@
+[submodule "bluepill"]
+	path = bluepill
+	url = git@github.com:opscode-cookbooks/bluepill.git
+[submodule "rc_mon"]
+	path = rc_mon
+	url = git@github.com:hw-cookbooks/rc_mon.git
