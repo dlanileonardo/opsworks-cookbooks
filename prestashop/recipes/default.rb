@@ -47,7 +47,7 @@ node[:deploy].each do |application, deploy|
 
   # assets
   # execute "cp -R #{deploy[:deploy_to]}/current/themes/bootstrap-theme/assets/ /mnt/aws/themes/bootstrap-theme/" do
-  end
+  # end
 
   app_root = "#{deploy[:deploy_to]}/current"
   execute "chmod -R 770 #{app_root}" do
