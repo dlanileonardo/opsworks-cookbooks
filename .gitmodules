@@ -1,0 +1,3 @@
+[submodule "s3cmd"]
+	path = s3cmd
+	url = git@github.com:dlanileonardo/s3cmd.git
