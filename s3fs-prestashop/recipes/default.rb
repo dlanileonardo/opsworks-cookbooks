@@ -21,7 +21,7 @@ node[:deploy].each do |application, deploy|
   end
 
   # List of typefiles to S3 Sync
-  template "#{deploy[:deploy_to]}/.pictures.s3cmd.includes" do
+  template "#{deploy[:deploy_to]}/current/.pictures.s3cmd.includes" do
     mode 0755
     source 'pictures.s3cmd.includes'
     notifies :restart, "service[apache2]"
@@ -30,13 +30,13 @@ node[:deploy].each do |application, deploy|
   # Command to Sync
   execute "s3sync_themes" do
     cwd "#{deploy[:deploy_to]}/current/"
-    command "s3cmd sync --exclude '*.*' --include-from #{deploy[:deploy_to]}.pictures.s3cmd.includes themes s3://omegajeans-static"
+    command "s3cmd sync --exclude '*.*' --include-from #{deploy[:deploy_to]}/current/.pictures.s3cmd.includes themes s3://omegajeans-static"
     action :run
   end
 
   execute "s3sync_modules" do
     cwd "#{deploy[:deploy_to]}/current/"
-    command "s3cmd sync --exclude '*.*' --include-from #{deploy[:deploy_to]}.pictures.s3cmd.includes modules s3://omegajeans-static"
+    command "s3cmd sync --exclude '*.*' --include-from #{deploy[:deploy_to]}/current/.pictures.s3cmd.includes modules s3://omegajeans-static"
     action :run
   end
 end
