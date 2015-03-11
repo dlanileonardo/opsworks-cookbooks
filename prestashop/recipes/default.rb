@@ -34,19 +34,19 @@ node[:deploy].each do |application, deploy|
     group deploy[:group]
   end
 
-  execute "mkdir -p /mnt/aws/themes/bootstrap-theme/"
+  # execute "mkdir -p /mnt/aws/themes/bootstrap-theme/"
 
   # link to aws/theme
-  link "#{deploy[:deploy_to]}/current/themes/bootstrap-theme/cache" do
-    to "/mnt/aws/themes/bootstrap-theme/cache"
-    owner deploy[:user]
-    group deploy[:group]
-  end
+  # link "#{deploy[:deploy_to]}/current/themes/bootstrap-theme/cache" do
+  #   to "/mnt/aws/themes/bootstrap-theme/cache"
+  #   owner deploy[:user]
+  #   group deploy[:group]
+  # end
 
-  execute "rm -rf /mnt/aws/themes/bootstrap-theme/"
+  # execute "rm -rf /mnt/aws/themes/bootstrap-theme/"
 
   # assets
-  execute "cp -R #{deploy[:deploy_to]}/current/themes/bootstrap-theme/assets/ /mnt/aws/themes/bootstrap-theme/" do
+  # execute "cp -R #{deploy[:deploy_to]}/current/themes/bootstrap-theme/assets/ /mnt/aws/themes/bootstrap-theme/" do
   end
 
   app_root = "#{deploy[:deploy_to]}/current"
