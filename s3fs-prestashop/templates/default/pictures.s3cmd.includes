@@ -4,3 +4,8 @@
 *.png
 *.css
 *.js
+*.otf
+*.eot
+*.svg
+*.ttf
+*.woff
