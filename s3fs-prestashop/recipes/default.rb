@@ -4,14 +4,6 @@ node[:deploy].each do |application, deploy|
     next
   end
 
-  # directory "/mnt/themes/bootstrap-theme/cache" do
-  #   owner deploy[:user]
-  #   group deploy[:group]
-  #   mode 0777
-  #   action :create
-  #   recursive: true
-  # end
-
   # Link cache do tema
   link "#{deploy[:deploy_to]}/current/themes/#{node[:prestashop][:theme]}/cache" do
     to "/mnt/aws/themes/#{node[:prestashop][:theme]}/cache"
