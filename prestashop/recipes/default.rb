@@ -18,9 +18,30 @@ node[:deploy].each do |application, deploy|
     end
   end
 
+  # write out opsworks.php
+  template "#{deploy[:deploy_to]}/shared/config/suporte-settings.ini.php" do
+    source 'settings.inc.php.erb'
+    mode '0770'
+    owner deploy[:user]
+    group deploy[:group]
+    variables(
+      :database => deploy[:database_suporte],
+    )
+    only_if do
+      (FileTest.exists?("#{deploy[:deploy_to]}/shared/config") && !FileTest.exists?("#{deploy[:deploy_to]}/shared/config/settings.inc.php")) || node[:deploy][:override_settings]
+    end
+  end
+
   # link to config
   link "#{deploy[:deploy_to]}/current/config/settings.inc.php" do
     to "#{deploy[:deploy_to]}/shared/config/settings.inc.php"
+    owner deploy[:user]
+    group deploy[:group]
+  end
+
+  # link to config suporte
+  link "#{deploy[:deploy_to]}/current/config/settings.inc.php" do
+    to "#{deploy[:deploy_to]}/shared/config/suporte-settings.ini.php"
     owner deploy[:user]
     group deploy[:group]
   end
