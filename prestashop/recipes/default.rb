@@ -28,7 +28,7 @@ node[:deploy].each do |application, deploy|
       :database => deploy[:database_suporte],
     )
     only_if do
-      (FileTest.exists?("#{deploy[:deploy_to]}/shared/config") && !FileTest.exists?("#{deploy[:deploy_to]}/shared/config/settings.inc.php")) || node[:deploy][:override_settings]
+      (FileTest.exists?("#{deploy[:deploy_to]}/shared/config") && !FileTest.exists?("#{deploy[:deploy_to]}/shared/config/suporte-settings.ini.php")) || node[:deploy][:override_settings]
     end
   end
 
