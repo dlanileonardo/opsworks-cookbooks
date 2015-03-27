@@ -40,7 +40,7 @@ node[:deploy].each do |application, deploy|
   end
 
   # link to config suporte
-  link "#{deploy[:deploy_to]}/current/config/settings.ini.php" do
+  link "#{deploy[:deploy_to]}/current/suporte/settings/settings.ini.php" do
     to "#{deploy[:deploy_to]}/shared/config/suporte-settings.ini.php"
     owner deploy[:user]
     group deploy[:group]
