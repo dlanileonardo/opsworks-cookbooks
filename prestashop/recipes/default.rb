@@ -106,7 +106,7 @@ node[:deploy].each do |application, deploy|
    -d 'a=fpurge_ts' \
    -d 'tkn=#{deploy[:cloudflare][:token]}' \
    -d 'email=#{deploy[:cloudflare][:email]}' \
-   -d 'z=#{deploy[:cloudflare][address]}' \
+   -d 'z=#{deploy[:cloudflare][:address]}' \
    -d 'v=1'" do
   end
 end
