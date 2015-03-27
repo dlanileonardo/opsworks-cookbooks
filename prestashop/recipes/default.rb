@@ -18,30 +18,9 @@ node[:deploy].each do |application, deploy|
     end
   end
 
-  # write out opsworks.php
-  template "#{deploy[:deploy_to]}/shared/config/suporte-settings.ini.php" do
-    source 'settings.ini.php.erb'
-    mode '0770'
-    owner deploy[:user]
-    group deploy[:group]
-    variables(
-      :database => deploy[:database_suporte],
-    )
-    only_if do
-      (FileTest.exists?("#{deploy[:deploy_to]}/shared/config") && !FileTest.exists?("#{deploy[:deploy_to]}/shared/config/suporte-settings.ini.php")) || node[:deploy][:override_settings]
-    end
-  end
-
   # link to config
   link "#{deploy[:deploy_to]}/current/config/settings.inc.php" do
     to "#{deploy[:deploy_to]}/shared/config/settings.inc.php"
-    owner deploy[:user]
-    group deploy[:group]
-  end
-
-  # link to config suporte
-  link "#{deploy[:deploy_to]}/current/suporte/settings/settings.ini.php" do
-    to "#{deploy[:deploy_to]}/shared/config/suporte-settings.ini.php"
     owner deploy[:user]
     group deploy[:group]
   end
@@ -81,5 +60,40 @@ node[:deploy].each do |application, deploy|
   execute "chmod 666 #{app_root}/.htaccess" do
   end
   execute "chmod 666 #{app_root}/robots.txt" do
+  end
+
+  # write out opsworks.php
+  template "#{deploy[:deploy_to]}/shared/config/suporte-settings.ini.php" do
+    source 'settings.ini.php.erb'
+    mode '0770'
+    owner deploy[:user]
+    group deploy[:group]
+    variables(
+      :database => deploy[:database_suporte],
+    )
+    only_if do
+      (FileTest.exists?("#{deploy[:deploy_to]}/shared/config") && !FileTest.exists?("#{deploy[:deploy_to]}/shared/config/suporte-settings.ini.php")) || node[:deploy][:override_settings]
+    end
+  end
+
+  # link to config suporte
+  link "#{deploy[:deploy_to]}/current/suporte/settings/settings.ini.php" do
+    to "#{deploy[:deploy_to]}/shared/config/suporte-settings.ini.php"
+    owner deploy[:user]
+    group deploy[:group]
+  end
+
+  # Share Folder to Suporte
+  %w{ storage storagedocshare storageform storagetheme tmpfiles userphoto }.each do |folder|
+    execute "mkdir -p #{deploy[:deploy_to]}/shared/suporte/var/#{folder}" do
+    end
+    execute "chmod -R 777 #{deploy[:deploy_to]}/shared/suporte/var/#{folder}" do
+    end
+
+    link "#{deploy[:deploy_to]}/current/suporte/var/#{folder}" do
+      to "#{deploy[:deploy_to]}/shared/suporte/var/#{folder}"
+      owner deploy[:user]
+      group deploy[:group]
+    end
   end
 end
