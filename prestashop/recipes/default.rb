@@ -100,4 +100,13 @@ node[:deploy].each do |application, deploy|
       group deploy[:group]
     end
   end
+
+  # Clean Cloudflare Cache
+  execute "curl https://www.cloudflare.com/api_json.html \
+   -d 'a=fpurge_ts' \
+   -d 'tkn=#{deploy[:cloudflare][:token]}' \
+   -d 'email=#{deploy[:cloudflare][:email]}' \
+   -d 'z=#{deploy[:cloudflare][address]}' \
+   -d 'v=1'" do
+  end
 end
