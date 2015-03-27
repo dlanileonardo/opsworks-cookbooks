@@ -87,11 +87,11 @@ node[:deploy].each do |application, deploy|
   %w{ storage storagedocshare storageform storagetheme tmpfiles userphoto }.each do |folder|
     execute "mkdir -p #{deploy[:deploy_to]}/shared/suporte/var/#{folder}" do
     end
-    
+
     execute "chmod -R 777 #{deploy[:deploy_to]}/shared/suporte/var/#{folder}" do
     end
 
-    execute "rm -rf #{deploy[:deploy_to]}/shared/suporte/var/#{folder}" do
+    execute "rm -rf #{deploy[:deploy_to]}/current/suporte/var/#{folder}" do
     end
 
     link "#{deploy[:deploy_to]}/current/suporte/var/#{folder}" do
