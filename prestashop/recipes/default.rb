@@ -20,7 +20,7 @@ node[:deploy].each do |application, deploy|
 
   # write out opsworks.php
   template "#{deploy[:deploy_to]}/shared/config/suporte-settings.ini.php" do
-    source 'settings.inc.php.erb'
+    source 'settings.ini.php.erb'
     mode '0770'
     owner deploy[:user]
     group deploy[:group]
@@ -40,7 +40,7 @@ node[:deploy].each do |application, deploy|
   end
 
   # link to config suporte
-  link "#{deploy[:deploy_to]}/current/config/settings.inc.php" do
+  link "#{deploy[:deploy_to]}/current/config/settings.ini.php" do
     to "#{deploy[:deploy_to]}/shared/config/suporte-settings.ini.php"
     owner deploy[:user]
     group deploy[:group]
