@@ -109,4 +109,10 @@ node[:deploy].each do |application, deploy|
    -d 'z=#{deploy[:cloudflare][:address]}' \
    -d 'v=1'" do
   end
+
+  # Clean Cache by Prestashop
+  %w{ cache compile }.each do | folder |
+    execute "rm -rf #{deploy[:deploy_to]}/current/cache/smarty/#{folder}" do
+    end
+  end
 end
